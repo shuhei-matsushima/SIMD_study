@@ -16,5 +16,11 @@
 * テストは一つづつ通しましょう。テストが通ったらcommitを忘れずにしましょう。
 * すべてのテストが通ったら、本リポジトリにプルリクエストをしてください。
 
+# 参考になりそうなサイト
+* [SIMDの組み込み関数のことはじめ (koturnの日記)](https://koturn.hatenablog.com/entry/2016/07/18/090000)
+* [C++ SSE/AVX 入門の記録 (Qiita @Nao-Shirotsu)](https://qiita.com/Nao-Shirotsu/items/a6919cf1b7122ac96ea9)
+* [インテル® アーキテクチャーの SIMD テクノロジーによりゲームコードを高速化(iSUS)](https://www.isus.jp/games/using-simd-technologies-on-intel-architecture-to-speed-up-game-code/)
+
+
 # 締め切り
 * 7/19 (月)
