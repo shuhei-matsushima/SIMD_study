@@ -13,8 +13,8 @@ void copy_vector4_array(float* dst, const float* src, int num)
 	// ToDo: SIMD計算を使って実装して下さい
 	for (int i = 0; i < num * UNIT; i += UNIT)
 	{
-		//__m128 … SSE/AVXの変数型、128 bitのレジスタを自由に切って使う（float型4個分）
-		//データをレジスタ pd に 128bit（32bit * 4個）ロードする
+		//__m128 … SSE/AVXの変数型、128 bitのレジスタを自由に切って使う（float型(32bit)4個分）
+		//src のデータをレジスタ pd に 128bit（32bit * 4個）ロードする
 		__m128 pd = _mm_load_ps(src + i);
 
 		//レジスタ pd のデータをメモリのdstに128bit（32bit * 4個）ストアする
@@ -42,6 +42,19 @@ void add_vector4_array(float* dst, const float* src0, const float* src1, int num
 {
 #if 1
 	// ToDo: SIMD計算を使って実装して下さい
+	for (int i = 0; i < num * UNIT; i += UNIT)
+	{
+		//src0,src1 のデータをレジスタ ps0,ps1 に 128bit（32bit * 4個）ロードする
+		__m128 ps0 = _mm_load_ps(src0 + i);
+		__m128 ps1 = _mm_load_ps(src1 + i);
+
+		//ps0 と ps0 のデータを同時に4個足し算し，pd に結果を書きこむ
+		__m128 pd = _mm_add_ps(ps0, ps1);
+
+		//レジスタ pd のデータをメモリのdstに128bit（32bit * 4個）ストアする
+		_mm_store_ps(dst + i, pd);
+	}
+
 #else
 	float* pd = dst;
 	const float* ps0 = src0;
